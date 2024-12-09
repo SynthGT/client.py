@@ -1,6 +1,7 @@
 import socket
 from cryptography.fernet import Fernet
 import threading
+import sys
 
 # Connect to the server
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,6 +16,7 @@ def receive_messages():
         try:
             message = client.recv(1024)
             print(cipher.decrypt(message).decode())
+            print('\a')
         except:
             print("[ERROR] Connection lost.")
             client.close()
